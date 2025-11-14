@@ -1,9 +1,6 @@
 from fastapi import FastAPI
 import requests
-from dotenv import load_dotenv
 import os
-
-load_dotenv()  # Load variables from .env
 
 app = FastAPI()
 
@@ -14,4 +11,7 @@ headers = {"Authorization": f"Bearer {os.getenv('HF_TOKEN')}"}
 def predict(text: str):
     payload = {"inputs": text}
     response = requests.post(API_URL, headers=headers, json=payload)
-    return response.json()
+    try:
+        return response.json()
+    except:
+        return {"error": "HF returned non-JSON", "raw": response.text}
