@@ -4,7 +4,7 @@ import os
 
 app = FastAPI()
 
-API_URL = "https://router.huggingface.co/inference/models/girizhhh/sentimentAnalyzer"
+API_URL = "https://router.huggingface.co/inference/models/girizhhh/sentimentanalyzer"
 headers = {"Authorization": f"Bearer {os.getenv('HF_TOKEN')}"}
 
 @app.get("/predict")
